@@ -1,4 +1,6 @@
-# heo
+from math import sqrt
+
+
 def median(list_of_values):
     sorted_list = sorted(list_of_values)
     center_index = int(len(list_of_values)/2) # round to int required because division always produces float
@@ -29,7 +31,14 @@ def covariance(first_list_of_values, second_list_of_values):
 
 
 def correlation(first_list_of_values, second_list_of_values):
-    result = 0
-    # Place your code here
+    """
+    this func gives correlation of 2 lists
+    :param first_list_of_values: list one
+    :param second_list_of_values: list two
+    :return: float: the correlation
+    """
+    sqrt_variance1 = sqrt(variance(first_list_of_values))
+    sqrt_variance2 = sqrt(variance(second_list_of_values))
+    result = (covariance(first_list_of_values, second_list_of_values)) / (sqrt_variance1 * sqrt_variance2)
     return result
 

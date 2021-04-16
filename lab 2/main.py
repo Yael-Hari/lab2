@@ -38,19 +38,19 @@ def run_analysis():
         # second way of printing. We print single string after format function.
         # Format function fills {} with values passed as arguments. It has nice applications for better printing,
         # like limiting number of digits for floats or other formatting tools.
-        print('"{}". Mean: {:3.2f}, Median: {}, Std: {}'.format(
+        print('"{}". Mean: {:3.2f}, Median: {:.2f}, Std: {:.4f}'.format(
             feature_name, mean(list_of_values), median(list_of_values), variance(list_of_values)**0.5))
 
     # here you should compute correlations. Be careful, pair should be sorted before printing
     strongest_pair = ("aaa", "bbb")
     high_correlation = -0.9
     print('The strongest linear relationship is between: "{}","{}". '
-          'The value is: {}'.format(strongest_pair[0], strongest_pair[1], high_correlation))
+          'The value is: {:.4f}'.format(strongest_pair[0], strongest_pair[1], high_correlation))
 
     weakest_pair = ("aaa", "bbb")
     low_correlation = 0.1
     print('The weakest linear relationship is between: "{}","{}". '
-          'The value is: {}'.format(*weakest_pair, low_correlation))  # * converts list to arguments.
+          'The value is: {:.4f}'.format(*weakest_pair, low_correlation))  # * converts list to arguments.
     # Line 53 is equivalent to line 48, this is just other way to use list as arguments
 
 
