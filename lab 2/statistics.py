@@ -13,7 +13,6 @@ def median(list_of_values):
         result = sorted_list[center_index]
     return result
 
-
 def mean(list_of_values):
     return sum(list_of_values)/len(list_of_values)
 
@@ -25,8 +24,18 @@ def variance(list_of_values):
 
 
 def covariance(first_list_of_values, second_list_of_values):
-    result = 0
-    # Place your code here
+    """
+     this func returns the covariance of 2 lists
+     :param first_list_of_values: list one
+     :param second_list_of_values: list two
+     :return: float: the covariance
+       """
+    averagex = mean(first_list_of_values)
+    averagey = mean(second_list_of_values)
+    sum = 0
+    for i in range(len(first_list_of_values)):
+        sum = sum + (((first_list_of_values[i]) - averagex) * ((second_list_of_values[i]) - averagey))
+    result = sum / (len(first_list_of_values) - 1)
     return result
 
 

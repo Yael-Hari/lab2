@@ -41,16 +41,30 @@ def run_analysis():
         print('"{}". Mean: {:3.2f}, Median: {:.2f}, Std: {:.4f}'.format(
             feature_name, mean(list_of_values), median(list_of_values), variance(list_of_values)**0.5))
 
-    # here you should compute correlations. Be careful, pair should be sorted before printing
-    strongest_pair = ("aaa", "bbb")
-    high_correlation = -0.9
+    low_correlation = 1
+    high_correlation = 0
+    weakest_pair = [0,0]
+    strongest_pair = [0,0]
+    for feature_name1, list_of_values1 in sorted(data.items()):
+        for feature_name2, list_of_values2 in sorted(data.items()):
+            if feature_name1 != feature_name2:
+                corr = correlation(list_of_values1 ,list_of_values2)
+                if abs(corr) < abs(low_correlation):
+                    weakest_pair[0] = feature_name1
+                    weakest_pair[1] = feature_name2
+                    low_correlation = corr
+                elif abs(corr) > abs (high_correlation):
+                    strongest_pair[0] = feature_name1
+                    strongest_pair[1] = feature_name2
+                    high_correlation = corr
+    weakest_pair.sort()
+    strongest_pair.sort()
+
     print('The strongest linear relationship is between: "{}","{}". '
           'The value is: {:.4f}'.format(strongest_pair[0], strongest_pair[1], high_correlation))
 
-    weakest_pair = ("aaa", "bbb")
-    low_correlation = 0.1
     print('The weakest linear relationship is between: "{}","{}". '
-          'The value is: {:.4f}'.format(*weakest_pair, low_correlation))  # * converts list to arguments.
+          'The value is: {:.4f}'.format(weakest_pair[0], weakest_pair[1], low_correlation)) # * converts list to arguments.
     # Line 53 is equivalent to line 48, this is just other way to use list as arguments
 
 
