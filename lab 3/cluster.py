@@ -62,13 +62,14 @@ class Cluster:
         print('Number of points:', len(self._points))
         print('Centroid:', self._centroid.coordinates)
         print('Points:', ' '.join(sorted([x.name for x in self._points])))
+        # print('SL1:', self.compute_SL1())
 
     def compute_loss(self):
         distances = [self._centroid.distance_to(point.coordinates) for point in self._points]
         return sum(distances)
 
     def compute_SSE(self):
-        errors = [self._centroid.distance_to(point.coordinates)**2 for point in self._points]
+        errors = [self._centroid.distance_to(point.coordinates) ** 2 for point in self._points]
         return sum(errors)
 
     @property
@@ -78,3 +79,10 @@ class Cluster:
     @property
     def number_of_points(self):
         return len(self._points)
+
+    # def compute_SL1(self):
+    #     sum_distances = 0;
+    #     for i, point1 in enumerate(self._points):
+    #         for point2 in self._points[i + 1:]:
+    #             sum_distances += point1.distance_to(point2)
+    #     return sum_distances

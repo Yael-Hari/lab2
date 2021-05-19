@@ -46,6 +46,14 @@ def run_kmeans():
     runner = KMeans(k, num_iterations)
     runner.run(points, random_seed)
     runner.print_results()
+    print('sl1:', sl1(points))
+
+
+def sl1(points):
+    sum = 0
+    for p in points:
+        sum += sum(p.coordinates)
+    return sum
 
 
 if __name__ == '__main__':
